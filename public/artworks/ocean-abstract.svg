@@ -1,0 +1,14 @@
+<svg width="800" height="640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgOcean" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0891b2;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="640" fill="url(#bgOcean)"/>
+  <path d="M 0 400 Q 200 350 400 400 T 800 400 L 800 640 L 0 640 Z" fill="#0e7490" opacity="0.6"/>
+  <path d="M 0 450 Q 200 400 400 450 T 800 450 L 800 640 L 0 640 Z" fill="#155e75" opacity="0.5"/>
+  <path d="M 0 500 Q 200 450 400 500 T 800 500 L 800 640 L 0 640 Z" fill="#164e63" opacity="0.4"/>
+  <text x="400" y="600" font-family="Georgia, serif" font-size="24" fill="white" text-anchor="middle" opacity="0.8">Ocean's Memory</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgOG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#881337;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1c1917;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#164e63;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bgOG)"/>
+  <text x="600" y="200" font-family="Georgia, serif" font-size="32" fill="white" text-anchor="middle" opacity="0.7" letter-spacing="8">CONTEMPORARY ARTIST</text>
+  <text x="600" y="300" font-family="Georgia, serif" font-size="72" fill="white" text-anchor="middle" font-weight="300">ARUNIMA</text>
+  <text x="600" y="380" font-family="Georgia, serif" font-size="72" fill="white" text-anchor="middle" font-weight="300">JAIN</text>
+  <line x1="500" y1="420" x2="700" y2="420" stroke="#f43f5e" stroke-width="1"/>
+  <text x="600" y="480" font-family="Georgia, serif" font-size="28" fill="white" text-anchor="middle" font-style="italic" opacity="0.9">"Where Art Becomes Energy"</text>
+  <text x="600" y="560" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle" opacity="0.5" letter-spacing="4">HEARTSCREATIONS</text>
+</svg>
