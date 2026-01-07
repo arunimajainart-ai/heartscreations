@@ -13,7 +13,7 @@
       "args": [
         "-y",
         "@azure-devops/mcp",
-        "gadereyaanshpatel",
+        "arunimajainart",
         "-d",
         "core",
         "work-items",
