@@ -14,7 +14,7 @@ export default function PortfolioPage() {
       : artworks.filter((a) => a.collectionSlug === activeFilter);
 
   return (
-    <div className="pt-32 pb-24">
+    <div className="pt-32 pb-24" data-nav-theme="light">
       {/* Header */}
       <section className="max-w-7xl mx-auto px-6 lg:px-8 mb-16">
         <motion.div

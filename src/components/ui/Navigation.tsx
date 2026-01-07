@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -15,16 +15,56 @@ const navLinks = [
 ];
 
 export default function Navigation() {
+  const headerRef = useRef<HTMLElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [navTheme, setNavTheme] = useState<"dark" | "light">("light");
+
+  const getThemeFromDom = () => {
+    const headerEl = headerRef.current;
+    const headerHeight = headerEl?.offsetHeight ?? 80;
+
+    const els = document.elementsFromPoint(window.innerWidth / 2, headerHeight + 8);
+    const target = els.find((el) => !headerEl?.contains(el)) as HTMLElement | undefined;
+
+    let node: HTMLElement | null = target ?? null;
+    while (node) {
+      const theme = node.dataset?.navTheme;
+      if (theme === "dark" || theme === "light") return theme;
+      node = node.parentElement;
+    }
+
+    return "light";
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
+    let raf = 0;
+
+    const update = () => {
       setIsScrolled(window.scrollY > 50);
+      setNavTheme(getThemeFromDom());
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const scheduleUpdate = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        update();
+      });
+    };
+
+    scheduleUpdate();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+
+    return () => {
+      if (raf) window.cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+    };
   }, []);
+
+  const isDark = navTheme === "dark";
 
   return (
     <>
@@ -32,11 +72,14 @@ export default function Navigation() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
+        ref={headerRef}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-sm py-4"
-            : "bg-transparent py-6"
+          isDark
+            ? isScrolled
+              ? "bg-stone-950/70 backdrop-blur-md border-b border-white/10 py-3"
+              : "bg-transparent py-5"
+            : "bg-white/95 backdrop-blur-md shadow-sm py-3"
         )}
       >
         <nav className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
@@ -47,8 +90,8 @@ export default function Navigation() {
             >
               <span
                 className={cn(
-                  "text-xl md:text-2xl font-light tracking-[0.3em] transition-colors duration-300",
-                  isScrolled ? "text-stone-900" : "text-white"
+                  "text-lg md:text-xl font-light tracking-[0.26em] transition-colors duration-300",
+                  isDark ? "text-white" : "text-stone-900"
                 )}
               >
                 HEARTS
@@ -56,8 +99,8 @@ export default function Navigation() {
               </span>
               <span
                 className={cn(
-                  "text-[10px] tracking-[0.25em] uppercase transition-colors duration-300",
-                  isScrolled ? "text-stone-500" : "text-white/70"
+                  "text-[9px] tracking-[0.22em] uppercase transition-colors duration-300",
+                  isDark ? "text-white/70" : "text-stone-500"
                 )}
               >
                 by Arunima Jain
@@ -66,14 +109,14 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-sm tracking-wider uppercase transition-all duration-300 hover:opacity-70 relative group",
-                  isScrolled ? "text-stone-700" : "text-white"
+                  "text-[13px] tracking-[0.16em] uppercase transition-all duration-300 hover:opacity-70 relative group",
+                  isDark ? "text-white" : "text-stone-700"
                 )}
               >
                 {link.label}
@@ -83,10 +126,10 @@ export default function Navigation() {
             <Link
               href="/contact"
               className={cn(
-                "ml-4 px-6 py-2.5 text-sm tracking-wider uppercase border transition-all duration-300",
-                isScrolled
-                  ? "border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white"
-                  : "border-white text-white hover:bg-white hover:text-stone-900"
+                "ml-3 px-5 py-2 text-[13px] tracking-[0.16em] uppercase border transition-all duration-300",
+                isDark
+                  ? "border-white/70 text-white hover:bg-white hover:text-stone-900"
+                  : "border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white"
               )}
             >
               Inquire
@@ -98,7 +141,7 @@ export default function Navigation() {
             onClick={() => setIsMobileMenuOpen(true)}
             className={cn(
               "md:hidden p-2 transition-colors",
-              isScrolled ? "text-stone-900" : "text-white"
+              isDark ? "text-white" : "text-stone-900"
             )}
             aria-label="Open menu"
           >

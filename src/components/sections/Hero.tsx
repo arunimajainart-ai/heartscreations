@@ -19,6 +19,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
+      data-nav-theme="dark"
       className="relative h-screen overflow-hidden"
     >
       {/* Animated Background Layers */}
@@ -26,50 +27,24 @@ export default function Hero() {
         style={{ scale }}
         className="absolute inset-0"
       >
-        {/* Gradient Overlay inspired by the artwork colors */}
-        <div className="absolute inset-0 bg-gradient-to-br from-rose-900/90 via-stone-900/80 to-teal-900/90 z-10" />
-        
-        {/* Abstract color blocks inspired by the bird painting */}
-        <div className="absolute inset-0 z-0">
-          <motion.div
-            animate={{
-              opacity: [0.3, 0.5, 0.3],
-              scale: [1, 1.05, 1],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-br from-rose-600/40 to-rose-900/60"
-          />
-          <motion.div
-            animate={{
-              opacity: [0.3, 0.5, 0.3],
-              scale: [1, 1.05, 1],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-teal-500/40 to-cyan-900/60"
-          />
-          <motion.div
-            animate={{
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/4 left-1/3 w-1/4 h-1/2 bg-gradient-to-b from-amber-500/30 to-orange-600/40 blur-2xl"
-          />
-        </div>
-
-        {/* Texture Overlay - using CSS gradient instead of image */}
-        <div className="absolute inset-0 z-20 opacity-20 mix-blend-overlay bg-gradient-to-br from-white/10 via-transparent to-black/10" />
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/Arunima_Landing_Page.webp')" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-black/40 z-10" />
       </motion.div>
 
       {/* Content */}
       <motion.div
         style={{ y, opacity }}
-        className="relative z-30 h-full flex flex-col items-center justify-center text-white px-6 pb-24 md:pb-32"
+        className="relative z-30 h-full flex flex-col items-center justify-center text-white px-6 pb-24 md:pb-32 text-center"
       >
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-sm md:text-base tracking-[0.4em] uppercase text-white/70 mb-6"
+          style={{ fontFamily: "var(--font-cormorant), serif" }}
+          className="text-sm md:text-base font-normal tracking-wide text-white/75 mb-5"
         >
           Contemporary Artist
         </motion.p>
@@ -78,13 +53,21 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="text-center"
+          style={{
+            fontFamily: "var(--font-cormorant), serif",
+            WebkitTextStroke: "0.9px rgba(0,0,0,0.22)",
+            textShadow: "0 10px 26px rgba(0,0,0,0.28)",
+          }}
+          className="text-center text-[#f6efe6]/95 leading-[1.02]"
         >
-          <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extralight tracking-wide">
+          <span className="block text-[clamp(2.35rem,7vw,6.1rem)] font-medium tracking-[0.06em]">
             ARUNIMA
           </span>
-          <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extralight tracking-wide mt-2">
-            JAIN
+          <span className="block text-[clamp(2.2rem,6vw,5.45rem)] font-medium tracking-[0.06em] -mt-2">
+            <span className="inline-block italic" style={{ fontSize: "1.08em" }}>
+              J
+            </span>
+            <span className="inline-block -ml-1">AIN</span>
           </span>
         </motion.h1>
 
@@ -92,10 +75,13 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
-          className="mt-8 flex flex-col items-center"
+          className="mt-6 flex flex-col items-center"
         >
-          <div className="w-16 h-px bg-gradient-to-r from-transparent via-rose-400 to-transparent mb-6" />
-          <p className="text-lg md:text-xl lg:text-2xl font-light italic text-white/90 tracking-wide">
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-[#c9a646]/80 to-transparent mb-5" />
+          <p
+            style={{ fontFamily: "var(--font-cormorant), serif" }}
+            className="text-base md:text-lg lg:text-xl font-light italic text-[#f1e7da] tracking-wide drop-shadow-[0_6px_18px_rgba(0,0,0,0.35)]"
+          >
             &ldquo;Where Art Becomes Energy&rdquo;
           </p>
         </motion.div>
@@ -108,13 +94,13 @@ export default function Hero() {
         >
           <Link
             href="/portfolio"
-            className="px-8 py-4 bg-white text-stone-900 text-sm tracking-wider uppercase hover:bg-rose-50 transition-all duration-300 hover:shadow-lg hover:shadow-white/20"
+            className="px-8 py-4 bg-[#7d0f23] border-2 border-[#c9a646] text-sm tracking-[0.16em] uppercase text-white shadow-[0_10px_30px_rgba(0,0,0,0.24)] hover:brightness-110 transition-all duration-300"
           >
             View Collection
           </Link>
           <Link
             href="/contact"
-            className="px-8 py-4 border border-white/30 text-white text-sm tracking-wider uppercase hover:bg-white/10 transition-all duration-300"
+            className="px-8 py-4 border-2 border-white/60 text-white text-sm tracking-[0.14em] uppercase hover:bg-white/08 transition-all duration-300"
           >
             Commission Art
           </Link>

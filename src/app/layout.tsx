@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
-import Navigation from "@/components/ui/Navigation";
-import Footer from "@/components/ui/Footer";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ArtistJsonLd, WebsiteJsonLd } from "@/components/seo/JsonLd";
 
 const cormorant = Cormorant_Garamond({
@@ -91,9 +91,9 @@ export default function RootLayout({
         <WebsiteJsonLd />
       </head>
       <body className="font-sans antialiased">
-        <Navigation />
+        <SiteHeader />
         <main>{children}</main>
-        <Footer />
+        <SiteFooter />
       </body>
     </html>
   );
