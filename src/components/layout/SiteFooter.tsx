@@ -97,10 +97,6 @@ export function SiteFooter() {
               </div>
             </Link>
 
-            <p className="text-sm leading-[1.8] text-muted-foreground">
-              Contemporary works—crafted with clarity, depth, and stillness.
-            </p>
-
             <div className="flex items-center gap-3">
               <a
                 href="https://instagram.com/Hearts_Creations"
