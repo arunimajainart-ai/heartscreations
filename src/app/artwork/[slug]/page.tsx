@@ -54,13 +54,15 @@ export default function ArtworkDetailPage({ params }: ArtworkDetailPageProps) {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative aspect-square bg-stone-100 overflow-hidden group cursor-pointer"
-                 onClick={() => setIsModalOpen(true)}>
+            <div
+              className="relative aspect-[4/5] bg-white overflow-hidden group cursor-pointer rounded-xl shadow-sm"
+              onClick={() => setIsModalOpen(true)}
+            >
               <Image
                 src={artwork.image}
                 alt={artwork.title}
                 fill
-                className="object-cover"
+                className="object-contain p-4"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
               />

@@ -37,7 +37,11 @@ export default function ArtworkCard({
                 src={artwork.image}
                 alt={artwork.title}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className={`transition-transform duration-500 group-hover:scale-105 ${
+                  artwork.collectionSlug === "divine-symmetry"
+                    ? "object-contain p-3 bg-white"
+                    : "object-cover"
+                }`}
                 sizes="(max-width: 768px) 50vw, 25vw"
               />
             </div>
@@ -76,7 +80,11 @@ export default function ArtworkCard({
                 src={artwork.image}
                 alt={artwork.title}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className={`transition-transform duration-700 group-hover:scale-105 ${
+                  artwork.collectionSlug === "divine-symmetry"
+                    ? "object-contain p-4 bg-white"
+                    : "object-cover"
+                }`}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               <button
@@ -136,7 +144,11 @@ export default function ArtworkCard({
             src={artwork.image}
             alt={artwork.title}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className={`transition-transform duration-700 group-hover:scale-105 ${
+              artwork.collectionSlug === "divine-symmetry"
+                ? "object-contain p-3 bg-white"
+                : "object-cover"
+            }`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           
