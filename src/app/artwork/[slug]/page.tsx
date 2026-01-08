@@ -4,7 +4,7 @@ import { use, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Expand, Share2, Heart } from "lucide-react";
+import { ArrowLeft, Expand } from "lucide-react";
 import { getArtworkBySlug, getArtworksByCollection } from "@/data/artworks";
 import ImageModal from "@/components/ui/ImageModal";
 import ArtworkCard from "@/components/ui/ArtworkCard";
@@ -146,25 +146,13 @@ export default function ArtworkDetailPage({ params }: ArtworkDetailPageProps) {
             )}
 
             {/* Actions */}
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-3 mt-8">
               <Link
                 href="/contact"
                 className="flex-1 min-w-[200px] py-4 bg-stone-900 text-white text-sm tracking-wider uppercase text-center hover:bg-rose-700 transition-colors"
               >
                 Inquire About This Piece
               </Link>
-              <button
-                className="p-4 border border-stone-300 text-stone-600 hover:border-rose-500 hover:text-rose-600 transition-colors"
-                aria-label="Add to favorites"
-              >
-                <Heart className="w-5 h-5" />
-              </button>
-              <button
-                className="p-4 border border-stone-300 text-stone-600 hover:border-rose-500 hover:text-rose-600 transition-colors"
-                aria-label="Share artwork"
-              >
-                <Share2 className="w-5 h-5" />
-              </button>
             </div>
           </motion.div>
         </div>

@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Mail, Phone, Instagram, MapPin } from "lucide-react";
-import ContactForm from "@/components/ui/ContactForm";
 
 export default function ContactPage() {
   return (
@@ -27,120 +26,105 @@ export default function ContactPage() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-16">
-          {/* Contact Info */}
+        <div className="grid lg:grid-cols-[1.2fr] justify-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-1"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="relative overflow-hidden bg-gradient-to-br from-[#f7f0e3] via-white to-[#f1e6d6] border border-amber-100 shadow-[0_18px_50px_rgba(0,0,0,0.08)]"
           >
-            <div className="bg-stone-50 p-8 h-full">
-              <h2 className="text-xl font-light text-stone-900 mb-8">
-                Contact Information
-              </h2>
+            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_20%,rgba(191,146,82,0.12),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(191,146,82,0.10),transparent_30%)]" />
+            <div className="relative p-8 md:p-10 space-y-8">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <p className="text-xs tracking-[0.3em] uppercase text-amber-700 mb-2">Reach Out</p>
+                  <h2 className="text-3xl font-light text-[#b08b40]" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                    Direct Inquiries
+                  </h2>
+                  <p className="text-stone-600 mt-3 max-w-2xl">
+                    We&apos;re prioritizing personal conversations right now. Email or call and we&apos;ll respond within 24–48 hours.
+                  </p>
+                </div>
+                <div className="flex gap-3">
+                  <a
+                    href="mailto:arunimajain02@gmail.com"
+                    className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-5 py-3 text-sm font-semibold tracking-[0.18em] uppercase text-white shadow-[0_14px_30px_rgba(191,146,82,0.35)] transition-all duration-300 bg-gradient-to-r from-amber-800 via-amber-600 to-amber-500 hover:-translate-y-[1px] hover:shadow-[0_18px_38px_rgba(191,146,82,0.45)] focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 focus:ring-offset-white"
+                  >
+                    <span className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-white/20 via-transparent to-white/10 transition-opacity" />
+                    <Mail className="relative w-4 h-4 text-white drop-shadow" />
+                    <span className="relative">Email</span>
+                  </a>
+                  <a
+                    href="tel:+918055069122"
+                    className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-5 py-3 text-sm font-semibold tracking-[0.18em] uppercase text-amber-800 border border-amber-300 bg-white/90 backdrop-blur-sm transition-all duration-300 hover:-translate-y-[1px] hover:border-amber-500 hover:shadow-[0_12px_28px_rgba(191,146,82,0.18)] focus:outline-none focus:ring-2 focus:ring-amber-200 focus:ring-offset-2 focus:ring-offset-white"
+                  >
+                    <span className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-50/90 via-white/60 to-amber-50/80 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <Phone className="relative w-4 h-4 text-amber-700" />
+                    <span className="relative">Call</span>
+                  </a>
+                </div>
+              </div>
 
-              <div className="space-y-6">
-                <a
-                  href="mailto:arunimajain02@gmail.com"
-                  className="flex items-start gap-4 group"
-                >
-                  <div className="p-3 bg-white border border-stone-200 group-hover:border-rose-300 transition-colors">
-                    <Mail className="w-5 h-5 text-stone-600 group-hover:text-rose-600 transition-colors" />
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="p-3 bg-white border border-amber-100 shadow-sm">
+                      <Mail className="w-5 h-5 text-amber-700" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-amber-700 tracking-wider uppercase mb-1">Email</p>
+                      <a href="mailto:arunimajain02@gmail.com" className="text-stone-900 hover:text-amber-700 transition-colors">
+                        arunimajain02@gmail.com
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-xs text-stone-400 tracking-wider uppercase mb-1">
-                      Email
-                    </p>
-                    <p className="text-stone-900 group-hover:text-rose-600 transition-colors">
-                      arunimajain02@gmail.com
-                    </p>
-                  </div>
-                </a>
 
-                <a
-                  href="tel:+918055069122"
-                  className="flex items-start gap-4 group"
-                >
-                  <div className="p-3 bg-white border border-stone-200 group-hover:border-rose-300 transition-colors">
-                    <Phone className="w-5 h-5 text-stone-600 group-hover:text-rose-600 transition-colors" />
+                  <div className="flex items-start gap-3">
+                    <div className="p-3 bg-white border border-amber-100 shadow-sm">
+                      <Phone className="w-5 h-5 text-amber-700" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-amber-700 tracking-wider uppercase mb-1">Phone</p>
+                      <a href="tel:+918055069122" className="text-stone-900 hover:text-amber-700 transition-colors">
+                        +91 80550 69122
+                      </a>
+                      <p className="text-xs text-stone-500 mt-1">Best for urgent inquiries</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-xs text-stone-400 tracking-wider uppercase mb-1">
-                      Phone
-                    </p>
-                    <p className="text-stone-900 group-hover:text-rose-600 transition-colors">
-                      +91 80550 69122
-                    </p>
-                  </div>
-                </a>
+                </div>
 
-                <a
-                  href="https://instagram.com/Hearts_Creations"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-4 group"
-                >
-                  <div className="p-3 bg-white border border-stone-200 group-hover:border-rose-300 transition-colors">
-                    <Instagram className="w-5 h-5 text-stone-600 group-hover:text-rose-600 transition-colors" />
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="p-3 bg-white border border-amber-100 shadow-sm">
+                      <Instagram className="w-5 h-5 text-amber-700" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-amber-700 tracking-wider uppercase mb-1">Instagram</p>
+                      <a
+                        href="https://instagram.com/Hearts_Creations"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-stone-900 hover:text-amber-700 transition-colors"
+                      >
+                        @Hearts_Creations
+                      </a>
+                      <p className="text-xs text-stone-500 mt-1">Hearts_Creations by Arunima Jain</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-xs text-stone-400 tracking-wider uppercase mb-1">
-                      Instagram
-                    </p>
-                    <p className="text-stone-900 group-hover:text-rose-600 transition-colors">
-                      @Hearts_Creations
-                    </p>
-                    <p className="text-xs text-stone-500 mt-1">
-                      Hearts_Creations by Arunima Jain
-                    </p>
-                  </div>
-                </a>
 
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-white border border-stone-200">
-                    <MapPin className="w-5 h-5 text-stone-600" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-stone-400 tracking-wider uppercase mb-1">
-                      Location
-                    </p>
-                    <p className="text-stone-900">India</p>
-                    <p className="text-xs text-stone-500 mt-1">
-                      Shipping worldwide available
-                    </p>
+                  <div className="flex items-start gap-3">
+                    <div className="p-3 bg-white border border-amber-100 shadow-sm">
+                      <MapPin className="w-5 h-5 text-amber-700" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-amber-700 tracking-wider uppercase mb-1">Location</p>
+                      <p className="text-stone-900">India</p>
+                      <p className="text-xs text-stone-500 mt-1">Shipping worldwide available</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Response Time */}
-              <div className="mt-10 pt-8 border-t border-stone-200">
-                <p className="text-xs text-stone-400 tracking-wider uppercase mb-2">
-                  Response Time
-                </p>
-                <p className="text-stone-600 text-sm">
-                  I typically respond within 24-48 hours. For urgent inquiries, 
-                  please reach out via phone.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="lg:col-span-2"
-          >
-            <div className="bg-white border border-stone-100 p-8 md:p-10">
-              <h2 className="text-xl font-light text-stone-900 mb-2">
-                Send a Message
-              </h2>
-              <p className="text-stone-500 text-sm mb-8">
-                Fill out the form below and I&apos;ll get back to you as soon as possible.
-              </p>
-              <ContactForm />
             </div>
           </motion.div>
         </div>

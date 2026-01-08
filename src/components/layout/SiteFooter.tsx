@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { CSSProperties } from "react";
 import { ArrowUpRight, Instagram, Mail, Phone } from "lucide-react";
 
@@ -21,6 +24,8 @@ const footerLinks = {
 };
 
 export function SiteFooter() {
+  const pathname = usePathname();
+  const hideCta = pathname === "/contact";
   const monoDark: CSSProperties = {
     backgroundImage:
       "linear-gradient(145deg, rgba(201,166,70,0.95), rgba(255,233,186,0.9))",
@@ -31,39 +36,43 @@ export function SiteFooter() {
   return (
     <footer data-nav-theme="dark" className="theme-dark bg-background text-foreground">
       <div className="relative overflow-hidden border-t border-border">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[980px] h-[420px] rounded-full bg-[radial-gradient(circle,rgba(201,166,70,0.16),transparent_62%)] blur-3xl" />
-        </div>
-
-        <Container className="relative py-14 md:py-16">
-          <GlassCard className="p-6 md:p-8">
-            <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-[11px] tracking-[0.34em] uppercase text-accent">
-                  Transform your space
-                </p>
-                <h2
-                  style={{ fontFamily: "var(--font-cormorant), serif" }}
-                  className="mt-3 text-[clamp(1.9rem,3vw,2.75rem)] font-light leading-[1.06]"
-                >
-                  Ready to own a piece of art?
-                </h2>
-                <p className="mt-4 max-w-xl text-sm leading-[1.85] text-muted-foreground">
-                  Commission a bespoke artwork or explore the curated collection. A calm,
-                  premium experience—designed to let the art breathe.
-                </p>
-              </div>
-
-              <Link
-                href="/contact"
-                className="shrink-0 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full h-12 px-6 text-sm font-medium tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ring)] bg-accent text-accent-foreground hover:bg-[color:color-mix(in_srgb,var(--accent)_86%,black)]"
-              >
-                Start a commission
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
+        {!hideCta && (
+          <>
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[980px] h-[420px] rounded-full bg-[radial-gradient(circle,rgba(201,166,70,0.16),transparent_62%)] blur-3xl" />
             </div>
-          </GlassCard>
-        </Container>
+
+            <Container className="relative py-14 md:py-16">
+              <GlassCard className="p-6 md:p-8">
+                <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <p className="text-[11px] tracking-[0.34em] uppercase text-accent">
+                      Transform your space
+                    </p>
+                    <h2
+                      style={{ fontFamily: "var(--font-cormorant), serif" }}
+                      className="mt-3 text-[clamp(1.9rem,3vw,2.75rem)] font-light leading-[1.06]"
+                    >
+                      Ready to own a piece of art?
+                    </h2>
+                    <p className="mt-4 max-w-xl text-sm leading-[1.85] text-muted-foreground">
+                      Commission a bespoke artwork or explore the curated collection. A calm,
+                      premium experience—designed to let the art breathe.
+                    </p>
+                  </div>
+
+                  <Link
+                    href="/contact"
+                    className="shrink-0 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full h-12 px-6 text-sm font-medium tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ring)] bg-accent text-accent-foreground hover:bg-[color:color-mix(in_srgb,var(--accent)_86%,black)]"
+                  >
+                    Start a commission
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </GlassCard>
+            </Container>
+          </>
+        )}
       </div>
 
       <Container className="py-14 md:py-16">
