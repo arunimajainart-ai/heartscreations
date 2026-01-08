@@ -31,7 +31,7 @@ export const collections: Collection[] = [
     slug: "abstract-expressions",
     tagline: "Bold color energy & introspection",
     description: "A journey through vibrant collisions of color, where emotion becomes movement and chaos transforms into serene beauty. Each piece captures the fleeting moment where thought surrenders to pure feeling.",
-    coverImage: "/artworks/bird-window.svg",
+    coverImage: "/abstract_collection.webp",
   },
   {
     id: "sacred-energies",
@@ -39,7 +39,7 @@ export const collections: Collection[] = [
     slug: "sacred-energies",
     tagline: "The divine strength of silence",
     description: "Works that channel ancient power and protective aura. Inspired by sacred symbolism, these pieces bring Vastu-aligned energy and spiritual grounding to any space they inhabit.",
-    coverImage: "/artworks/nandi.svg",
+    coverImage: "/nandi_art.webp",
   },
   {
     id: "divine-symmetry",
@@ -47,7 +47,7 @@ export const collections: Collection[] = [
     slug: "divine-symmetry",
     tagline: "Sacred geometry & prosperity",
     description: "Pichwai-inspired masterpieces celebrating divine motherhood, lotus symbolism, and timeless Indian artistic traditions. Each stroke honors centuries of spiritual artistry.",
-    coverImage: "/artworks/pichwai-cow.svg",
+    coverImage: "/divine_art.webp",
   },
   {
     id: "modern-textures",

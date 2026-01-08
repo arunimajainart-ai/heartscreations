@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Cedarville_Cursive } from "next/font/google";
@@ -14,30 +14,16 @@ const signatureFont = Cedarville_Cursive({
 
 export default function ArtistStatement() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  const imageY = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
+  const [showDetails, setShowDetails] = useState(false);
 
   return (
     <section
       ref={sectionRef}
-      data-nav-theme="dark"
-      className="relative py-20 md:py-24 lg:py-32 bg-[#0b0b0d] overflow-hidden"
+      data-nav-theme="light"
+      className="relative bg-white py-8 md:py-12 lg:py-14"
     >
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(201,166,70,0.16),transparent_48%),radial-gradient(circle_at_70%_60%,rgba(176,28,64,0.18),transparent_55%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/40" />
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[980px] h-[980px] rounded-full bg-[conic-gradient(from_180deg,rgba(201,166,70,0.18),rgba(176,28,64,0.14),rgba(255,255,255,0.06),rgba(201,166,70,0.18))] blur-3xl opacity-50" />
-        <div className="absolute -right-40 top-1/2 -translate-y-1/2 w-[720px] h-[720px] rounded-full bg-[radial-gradient(circle,rgba(201,166,70,0.14),transparent_60%)] opacity-70" />
-        <div className="absolute -right-52 top-1/2 -translate-y-1/2 w-[860px] h-[860px] rounded-full border border-white/8 opacity-40" />
-        <div className="absolute -right-56 top-1/2 -translate-y-1/2 w-[980px] h-[980px] rounded-full border border-white/6 opacity-25" />
-      </div>
-
-      <div className="relative max-w-6xl mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="relative mx-auto max-w-6xl px-6 lg:px-10">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -47,18 +33,19 @@ export default function ArtistStatement() {
             className="order-2 lg:order-1 max-w-[34rem]"
           >
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
               style={{ fontFamily: "var(--font-cormorant), serif" }}
-              className="font-light leading-[1.06] text-[#d7c7bd] drop-shadow-[0_10px_28px_rgba(0,0,0,0.55)]"
+              className="text-[#1b1b1b] leading-[1.05] font-normal"
             >
-              <span className="block text-[clamp(2.25rem,3.4vw,3rem)]">
+              <span className="block text-[clamp(2.4rem,3.6vw,3.2rem)]">
                 A Dialogue Between
               </span>
-              <br />
-              <span className="block text-[clamp(2.25rem,3.4vw,3rem)] -mt-2">
+              <span
+                className="block text-[clamp(2.4rem,3.6vw,3.2rem)] italic text-[#b08b40] drop-shadow-[0_3px_6px_rgba(0,0,0,0.18)]"
+              >
                 Chaos &amp; Silence
               </span>
             </motion.h2>
@@ -68,15 +55,15 @@ export default function ArtistStatement() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-8 space-y-6"
+              className="mt-6 space-y-5"
             >
-              <p className="text-white/70 leading-[1.9] text-[14px] md:text-[15px]">
+              <p className="text-[#4a4a4a] leading-[1.8] text-[15px] md:text-[16px] max-w-xl">
                 My work is an exploration of the unseen forces that govern our existence. 
                 Through the vibrant collisions of color in my abstracts to the meditative 
                 stillness of sacred geometry, I seek to capture the fleeting moment where 
                 emotion transforms into tangible energy.
               </p>
-              <p className="text-white/70 leading-[1.9] text-[14px] md:text-[15px]">
+              <p className="text-[#4a4a4a] leading-[1.8] text-[15px] md:text-[16px] max-w-xl">
                 Each canvas becomes a conversation — between tradition and innovation, 
                 between the divine and the earthly, between what we see and what we feel. 
                 I invite you to step into this dialogue and discover the stories that 
@@ -89,12 +76,12 @@ export default function ArtistStatement() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-10 flex items-center gap-4"
+              className="mt-8 flex items-center gap-4"
             >
-              <div className="w-14 h-px bg-[#c9a646]/55" />
+              <div className="w-12 h-px bg-black/60" />
               <p
                 style={{ fontFamily: "var(--font-cormorant), serif" }}
-                className="text-sm md:text-base italic text-white/65 font-light"
+                className="text-sm md:text-base italic text-black/75 font-normal"
               >
                 Arunima Jain
               </p>
@@ -107,59 +94,85 @@ export default function ArtistStatement() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
             className="order-1 lg:order-2"
           >
-            <div className="relative">
-              <div className="mx-auto max-w-[22rem] md:max-w-[24rem] lg:max-w-[26rem] rounded-3xl border border-white/12 bg-white/5 backdrop-blur-xl shadow-[0_40px_110px_rgba(0,0,0,0.62)] p-4 md:p-5">
-                <div className="relative">
-                  <div className="absolute -inset-10 rounded-[32px] bg-[radial-gradient(circle,rgba(201,166,70,0.22),transparent_55%)] blur-3xl opacity-70" />
+            <div className="relative mx-auto max-w-[22rem] lg:max-w-[23rem] space-y-4">
+              <div className="group relative overflow-hidden rounded-[22px] bg-gradient-to-b from-slate-50 via-white to-slate-100 p-[10px] shadow-[0_32px_80px_rgba(15,23,42,0.16)] ring-1 ring-black/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_40px_110px_rgba(15,23,42,0.22)]">
+                <motion.div
+                  className="relative aspect-[3/4] max-h-[65vh] sm:max-h-[70vh] md:max-h-[72vh] rounded-[16px] bg-white shadow-[0_18px_40px_rgba(15,23,42,0.10)] overflow-hidden transition-all duration-500 group-hover:scale-[1.01]"
+                >
+                  <Image
+                    src="/divine_art.webp"
+                    alt="Divine art by Arunima Jain"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 rounded-[16px] ring-1 ring-black/5" />
+                </motion.div>
+              </div>
 
-                  <div className="relative rounded-2xl border border-white/10 bg-black/25 p-3 md:p-4">
-                    <div className="relative aspect-square overflow-hidden rounded-xl">
-                      <motion.div style={{ y: imageY }} className="absolute inset-0">
-                        <Image
-                          src="/artworks/pichwai-cow.svg"
-                          alt="Pichwai artwork by Arunima Jain"
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                      </motion.div>
-                      <div className="absolute inset-0 ring-1 ring-white/10 pointer-events-none" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
-                    </div>
-
-                    <div className="mt-4 text-center">
-                      <p className="text-[10px] tracking-[0.26em] uppercase text-white/55">
-                        Featured Work
-                      </p>
-                      <p className="mt-1 text-sm text-white/75">Divine Symmetry</p>
-
-                      <div className="mt-4 flex items-center justify-center gap-2">
-                        <span className="w-6 h-px bg-[#c9a646]/70" />
-                        <span className="w-6 h-px bg-white/20" />
-                        <span className="w-6 h-px bg-white/20" />
-                        <span className="w-6 h-px bg-white/20" />
-                      </div>
-
-                      <Link
-                        href="/portfolio"
-                        className="mt-6 inline-flex items-center justify-center rounded-full px-8 py-3 text-xs tracking-[0.22em] uppercase border border-[#c9a646]/75 text-[#f2e8da] bg-[linear-gradient(180deg,rgba(201,166,70,0.22),rgba(255,255,255,0.04))] shadow-[0_14px_34px_rgba(0,0,0,0.40)] hover:bg-[linear-gradient(180deg,rgba(201,166,70,0.28),rgba(255,255,255,0.06))] transition-colors"
-                      >
-                        Explore Featured Work
-                      </Link>
-                    </div>
-                  </div>
+              <div className="text-center space-y-2">
+                <p className="text-base font-semibold text-slate-900">Pichwai painting</p>
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  <span className="rounded-full bg-gradient-to-r from-amber-100 to-amber-50 px-3 py-1 text-xs text-amber-800 shadow-[0_6px_16px_rgba(253,230,138,0.35)] ring-1 ring-amber-200">
+                    Acrylic on 300 gsm paper
+                  </span>
+                  <span className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-700 shadow-[0_6px_16px_rgba(15,23,42,0.04)] ring-1 ring-slate-200">
+                    40&quot; x 18&quot;
+                  </span>
                 </div>
               </div>
+
+              <div className="flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => setShowDetails((v) => !v)}
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-200 via-amber-100 to-white px-4 py-2 text-xs font-semibold text-amber-800 shadow-[0_14px_34px_rgba(251,191,36,0.35)] ring-1 ring-amber-200 transition-all duration-300 hover:-translate-y-[1px] hover:shadow-[0_18px_42px_rgba(251,191,36,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+                >
+                  {showDetails ? "Hide symbolism & details" : "View symbolism & details"}
+                </button>
+              </div>
+
+              <AnimatePresence initial={false}>
+                {showDetails && (
+                  <motion.div
+                    key="details"
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.22, ease: "easeOut" }}
+                    className="rounded-[18px] border border-amber-200/60 bg-gradient-to-b from-amber-50/90 via-white/92 to-white shadow-[0_26px_64px_rgba(15,23,42,0.12)] p-6 backdrop-blur-sm"
+                  >
+                    <div className="mb-4">
+                      <p className="text-xs tracking-[0.18em] uppercase text-slate-500">Pichwai painting</p>
+                      <p className="mt-1 text-sm text-slate-700">Acrylic on 300 gsm paper · 40&quot; x 18&quot;</p>
+                    </div>
+                    <div className="space-y-3">
+                      <p className="text-sm font-semibold text-slate-800">Symbolism</p>
+                      <ul className="space-y-2 text-sm text-slate-700">
+                        <li className="flex gap-2">
+                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-amber-500" aria-hidden />
+                          <span><span className="font-semibold">Cow and calf:</span> Prosperity, motherhood, abundance, and sacredness</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-amber-500" aria-hidden />
+                          <span><span className="font-semibold">Lotus flowers:</span> Purity, spiritual awakening, and divine beauty</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-amber-500" aria-hidden />
+                          <span><span className="font-semibold">Symmetry &amp; repetition:</span> Harmony, balance, and cosmic order</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
         </div>
       </div>
-
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/10 to-transparent pointer-events-none" />
     </section>
   );
 }
