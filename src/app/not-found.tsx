@@ -13,24 +13,27 @@ export default function NotFound() {
         transition={{ duration: 0.6 }}
         className="text-center max-w-md"
       >
-        <h1 className="text-8xl font-light text-stone-200 mb-4">404</h1>
-        <h2 className="text-2xl font-light text-stone-900 mb-4">
+        <h1 className="text-8xl font-light text-gray-200 mb-4">404</h1>
+        <h2
+          style={{ fontFamily: "var(--font-cormorant), serif" }}
+          className="text-2xl font-light text-[#333] mb-4"
+        >
           Page Not Found
         </h2>
-        <p className="text-stone-500 mb-8">
+        <p className="text-[#999] mb-8">
           The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-stone-900 text-white text-sm tracking-wider uppercase hover:bg-rose-700 transition-colors"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#333] text-white text-sm tracking-wider uppercase hover:bg-[#555] transition-colors"
           >
             <Home className="w-4 h-4" />
             Back to Home
           </Link>
           <button
             onClick={() => window.history.back()}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-stone-300 text-stone-600 text-sm tracking-wider uppercase hover:border-stone-900 transition-colors"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-300 text-[#666] text-sm tracking-wider uppercase hover:border-[#333] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Go Back

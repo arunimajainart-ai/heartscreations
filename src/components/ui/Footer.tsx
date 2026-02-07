@@ -4,11 +4,10 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Instagram, Mail, Phone, ArrowUpRight } from "lucide-react";
 
-const collections = [
-  { name: "Abstract Expressions", href: "/collections/abstract-expressions" },
-  { name: "Sacred Energies", href: "/collections/sacred-energies" },
-  { name: "Divine Symmetry", href: "/collections/divine-symmetry" },
-  { name: "Modern Textures", href: "/collections/modern-textures" },
+const artworkLinks = [
+  { name: "A Moment Between Worlds", href: "/artwork/a-moment-between-worlds" },
+  { name: "Nandi painting", href: "/artwork/nandi-painting" },
+  { name: "Pichwai painting", href: "/artwork/pichwai-painting" },
 ];
 
 export default function Footer() {
@@ -99,19 +98,19 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Collections */}
+          {/* Artworks */}
           <div>
             <h4 className="text-sm tracking-[0.2em] uppercase mb-6 text-white/80">
-              Collections
+              Artworks
             </h4>
             <ul className="space-y-3">
-              {collections.map((collection) => (
-                <li key={collection.href}>
+              {artworkLinks.map((item) => (
+                <li key={item.href}>
                   <Link
-                    href={collection.href}
+                    href={item.href}
                     className="text-white/60 hover:text-rose-400 transition-colors text-sm"
                   >
-                    {collection.name}
+                    {item.name}
                   </Link>
                 </li>
               ))}
