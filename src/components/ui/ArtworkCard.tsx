@@ -37,11 +37,7 @@ export default function ArtworkCard({
                 src={artwork.image}
                 alt={artwork.title}
                 fill
-                className={`transition-transform duration-500 group-hover:scale-105 ${
-                  artwork.collectionSlug === "divine-symmetry"
-                    ? "object-contain p-3 bg-white"
-                    : "object-cover"
-                }`}
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 50vw, 25vw"
               />
             </div>
@@ -80,11 +76,7 @@ export default function ArtworkCard({
                 src={artwork.image}
                 alt={artwork.title}
                 fill
-                className={`transition-transform duration-700 group-hover:scale-105 ${
-                  artwork.collectionSlug === "divine-symmetry"
-                    ? "object-contain p-4 bg-white"
-                    : "object-cover"
-                }`}
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               <button
@@ -96,19 +88,13 @@ export default function ArtworkCard({
               </button>
             </div>
             <div className="p-8 flex flex-col justify-center">
-              <p className="text-rose-600 text-xs tracking-[0.2em] uppercase mb-2">
-                {artwork.collection}
-              </p>
               <h3 className="text-2xl font-light text-stone-900 mb-4">
                 {artwork.title}
               </h3>
               <div className="space-y-2 text-sm text-stone-600 mb-6">
-                <p><span className="text-stone-400">Size:</span> {artwork.size}</p>
+                {artwork.size && <p><span className="text-stone-400">Size:</span> {artwork.size}</p>}
                 <p><span className="text-stone-400">Medium:</span> {artwork.medium}</p>
-                <p><span className="text-stone-400">Year:</span> {artwork.year}</p>
-                <p><span className="text-stone-400">Technique:</span> {artwork.technique}</p>
               </div>
-              <p className="text-stone-500 italic mb-6">&ldquo;{artwork.essence}&rdquo;</p>
               <Link
                 href={`/artwork/${artwork.slug}`}
                 className="inline-flex items-center gap-2 text-rose-600 hover:text-rose-700 transition-colors group/link"
@@ -144,11 +130,7 @@ export default function ArtworkCard({
             src={artwork.image}
             alt={artwork.title}
             fill
-            className={`transition-transform duration-700 group-hover:scale-105 ${
-              artwork.collectionSlug === "divine-symmetry"
-                ? "object-contain p-3 bg-white"
-                : "object-cover"
-            }`}
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           
@@ -172,23 +154,15 @@ export default function ArtworkCard({
               <ArrowUpRight className="w-5 h-5" />
             </Link>
           </div>
-
-          {/* Bottom Info on Hover */}
-          <div className="absolute inset-x-0 bottom-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-            <p className="text-white/80 text-sm italic">&ldquo;{artwork.essence}&rdquo;</p>
-          </div>
         </div>
 
         {/* Artwork Info */}
         <Link href={`/artwork/${artwork.slug}`} className="block mt-5">
-          <p className="text-rose-600 text-xs tracking-[0.15em] uppercase mb-2">
-            {artwork.collection}
-          </p>
           <h3 className="text-xl font-light text-stone-900 group-hover:text-rose-700 transition-colors">
             {artwork.title}
           </h3>
           <p className="text-sm text-stone-500 mt-2">
-            {artwork.medium} · {artwork.size}
+            {artwork.medium}{artwork.size ? ` · ${artwork.size}` : ""}
           </p>
         </Link>
       </motion.article>

@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { artworks } from "@/data/artworks";
 
-export default function PortfolioPage() {
+export default function AvailableWorksPage() {
   return (
     <div className="page-transition">
       {/* Title */}
@@ -18,42 +18,44 @@ export default function PortfolioPage() {
             style={{ fontFamily: "var(--font-cormorant), serif" }}
             className="text-3xl md:text-4xl lg:text-5xl font-light text-center text-[#333]"
           >
-            Portfolio
+            Available works
           </motion.h1>
         </div>
       </section>
 
-      {/* Two-column artwork grid */}
+      {/* Individual Artworks Grid */}
       <section className="pb-20 md:pb-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-x-8 gap-y-12">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {artworks.map((artwork, index) => (
               <motion.div
                 key={artwork.id}
                 initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <Link
                   href={`/artwork/${artwork.slug}`}
-                  className="group block overflow-hidden"
+                  className="group block relative aspect-[3/4] overflow-hidden"
                 >
                   <Image
                     src={artwork.image}
                     alt={artwork.title}
-                    width={800}
-                    height={800}
-                    className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
+                  {/* Overlay with title */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  <div className="absolute inset-0 flex items-end p-6 md:p-8">
+                    <h2
+                      style={{ fontFamily: "var(--font-cormorant), serif" }}
+                      className="text-2xl md:text-3xl font-light text-white drop-shadow-lg"
+                    >
+                      {artwork.title}
+                    </h2>
+                  </div>
                 </Link>
-                <div className="mt-4">
-                  <p className="text-[15px] text-[#333] leading-relaxed">
-                    <span className="font-medium">{artwork.title}.</span>
-                    {" "}{artwork.medium}.{artwork.size ? ` ${artwork.size}` : ""}
-                  </p>
-                </div>
               </motion.div>
             ))}
           </div>
