@@ -3,13 +3,14 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { artworks } from "@/data/artworks";
+import { useArtworks } from "@/lib/useFirestoreData";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { motionTransition, motionVariants } from "@/lib/motion";
 
 export default function CollectionsShowcase() {
   const reduceMotion = useReducedMotion();
+  const { artworks } = useArtworks(true);
 
   return (
     <Section tone="light" padding="tight" className="bg-background">

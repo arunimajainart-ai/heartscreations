@@ -1,29 +1,31 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import Image from "next/image";
-import { artworks } from "@/data/artworks";
-
-const heroImages = artworks
-  .filter(
-    (a) =>
-      a.image.endsWith(".webp") ||
-      a.image.endsWith(".jpeg") ||
-      a.image.endsWith(".jpg") ||
-      a.image.endsWith(".png")
-  )
-  .map((a) => ({ src: a.image, alt: a.title }));
+import { useArtworks } from "@/lib/useFirestoreData";
+import { HeroSkeleton } from "@/components/ui/Skeleton";
 
 export default function Hero() {
+  const { artworks, loading } = useArtworks(true);
   const [current, setCurrent] = useState(0);
+  const [firstImageLoaded, setFirstImageLoaded] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const heroImages = useMemo(
+    () =>
+      artworks
+        .filter((a) => a.image && a.image.trim() !== "")
+        .map((a) => ({ src: a.image, alt: a.title })),
+    [artworks]
+  );
 
   const startTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
+    if (heroImages.length === 0) return;
     timerRef.current = setInterval(() => {
       setCurrent((prev) => (prev + 1) % heroImages.length);
     }, 5000);
-  }, []);
+  }, [heroImages.length]);
 
   useEffect(() => {
     startTimer();
@@ -37,6 +39,10 @@ export default function Hero() {
     startTimer();
   };
 
+  if (loading && heroImages.length === 0) {
+    return <HeroSkeleton />;
+  }
+
   if (heroImages.length === 0) return null;
 
   return (
@@ -44,25 +50,32 @@ export default function Hero() {
       className="relative w-full overflow-hidden bg-black"
       style={{ height: "calc(100vh - 81px)" }}
     >
-      {heroImages.map((slide, i) => (
-        <div
-          key={slide.src}
-          className="absolute inset-0 transition-opacity duration-[1.5s] ease-in-out"
-          style={{ opacity: i === current ? 1 : 0 }}
-        >
+      {/* Skeleton shimmer underneath until first image loads */}
+      {!firstImageLoaded && (
+        <div className="absolute inset-0 bg-gray-200 animate-pulse z-0" />
+      )}
+
+      {heroImages.map((slide, i) => {
+        return (
           <Image
+            key={slide.src}
             src={slide.src}
             alt={slide.alt}
             fill
-            className="object-contain"
+            className={`object-contain transition-opacity duration-[1.5s] ease-in-out z-[1] ${
+              i === current ? "opacity-100" : "opacity-0"
+            }`}
             sizes="100vw"
             priority={i === 0}
+            onLoad={() => {
+              if (i === 0) setFirstImageLoaded(true);
+            }}
           />
-        </div>
-      ))}
+        );
+      })}
 
       {/* Subtle bottom gradient for indicators */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/30 to-transparent z-[1]" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/30 to-transparent z-[2]" />
 
       {/* Slide indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">

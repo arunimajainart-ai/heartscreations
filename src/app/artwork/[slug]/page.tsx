@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Expand } from "lucide-react";
-import { artworks, getArtworkBySlug } from "@/data/artworks";
+import { useArtworkBySlug, useArtworks } from "@/lib/useFirestoreData";
 import ImageModal from "@/components/ui/ImageModal";
-import { notFound } from "next/navigation";
+import { ArtworkDetailSkeleton } from "@/components/ui/Skeleton";
 
 interface ArtworkDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -15,14 +15,32 @@ interface ArtworkDetailPageProps {
 
 export default function ArtworkDetailPage({ params }: ArtworkDetailPageProps) {
   const { slug } = use(params);
-  const artwork = getArtworkBySlug(slug);
+  const { artwork, loading: artworkLoading } = useArtworkBySlug(slug);
+  const { artworks: allArtworks } = useArtworks(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  if (!artwork) {
-    notFound();
+  if (artworkLoading) {
+    return (
+      <div className="page-transition">
+        <ArtworkDetailSkeleton />
+      </div>
+    );
   }
 
-  const otherArtworks = artworks
+  if (!artwork) {
+    return (
+      <div className="page-transition">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-8 md:pt-12 pb-20 md:pb-28 text-center">
+          <h1 className="text-2xl text-gray-900 mb-4">Artwork not found</h1>
+          <Link href="/portfolio" className="text-blue-600 hover:text-blue-800">
+            Back to Portfolio
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const otherArtworks = allArtworks
     .filter((a) => a.id !== artwork.id)
     .slice(0, 3);
 

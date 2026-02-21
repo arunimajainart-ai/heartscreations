@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Expand, ArrowUpRight } from "lucide-react";
-import { Artwork } from "@/data/artworks";
+import { FirestoreArtwork as Artwork } from "@/lib/firestore";
 import ImageModal from "./ImageModal";
 
 interface ArtworkCardProps {

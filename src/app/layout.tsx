@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
-import { SiteHeader } from "@/components/layout/SiteHeader";
-import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ArtistJsonLd, WebsiteJsonLd } from "@/components/seo/JsonLd";
+import { AuthProvider } from "@/lib/auth-context";
+import { LayoutShell } from "@/components/layout/LayoutShell";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -17,6 +17,12 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
 });
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://heartscreations.com"),
@@ -102,9 +108,9 @@ export default function RootLayout({
         <WebsiteJsonLd />
       </head>
       <body className="font-sans antialiased">
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
+        <AuthProvider>
+          <LayoutShell>{children}</LayoutShell>
+        </AuthProvider>
       </body>
     </html>
   );
